@@ -1,14 +1,13 @@
-import { Button } from "./components/ui/button";
+import Navbar from "./components/ui/layout/Navbar";
+import { Outlet } from "react-router";
 
 const App = () => {
-    return (
-        <div>
-            <h1>Bootstrapping</h1>
-            <Button>Increase</Button>
-            <p>0</p>
-            <Button>Decrease</Button>
-        </div>
-    )
+  return (
+    <div>
+      <Navbar />
+      <Outlet />
+    </div>
+  );
 };
 
 export default App;
