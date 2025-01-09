@@ -1,9 +1,22 @@
+import TaskCard from "@/components/modules/tasks/TaskCard";
+import { selectTasks } from "@/redux/features/tasks/taskSlice";
+import { useSelector } from "react-redux";
+
 const Tasks = () => {
-    return (
-        <div>
-            <h1>Tasks Page Here</h1>
-        </div>
-    );
+  const tasks = useSelector(selectTasks);
+
+  return (
+    <div className="mx-auto max-w-7xl px-5 mt-20">
+      <div>
+        <h1>Tasks</h1>
+      </div>
+      <div className="flex flex-col gap-5 mt-5">
+        {tasks.map((task) => (
+          <TaskCard key={task.id} task={task} />
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Tasks;

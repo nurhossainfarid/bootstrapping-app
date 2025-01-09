@@ -8,5 +8,6 @@ export interface ITask {
 }
 
 export interface ITaskState {
-  tasks: ITask[];
-};
+  tasks: ITask[]
+  filter: "All" | "High" | "Medium" | "Low"
+}
