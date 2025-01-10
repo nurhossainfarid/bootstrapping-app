@@ -43,8 +43,7 @@ export function AddTask() {
   const [open, setOpen] = useState(false);
   const form = useForm<ITask>();
 
-  const [addTask, { data }] = useAddTaskMutation();
-  console.log(data);
+  const [addTask] = useAddTaskMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const taskData = {
