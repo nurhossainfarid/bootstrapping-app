@@ -4,7 +4,8 @@ export interface ITask {
   description: string;
   dueDate: string;
   isCompleted: boolean;
-  priority: "High" | "Medium" | "Low"; // Define priority levels as a union of string literals
+  priority: "High" | "Medium" | "Low";
+  assignedTo: string | null;
 }
 
 export interface ITaskState {
