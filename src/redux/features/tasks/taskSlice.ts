@@ -1,6 +1,7 @@
 import { RootState } from "@/redux/store";
-import { ITaskState } from "@/types/types";
-import { createSlice } from "@reduxjs/toolkit";
+import { ITask, ITaskState } from "@/types/types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from "uuid";
 
 const initialState: ITaskState = {
   tasks: [
@@ -21,14 +22,28 @@ const initialState: ITaskState = {
       priority: "Low",
     },
   ],
-  filter: "All"
+  filter: "All",
 };
 
 const taskSlice = createSlice({
   name: "task",
   initialState,
-  reducers: {},
+  reducers: {
+    addTask: (state, action: PayloadAction<ITask>) => {
+      const id: string = uuidv4();
+
+      const taskData = {
+        ...action.payload,
+        id,
+        isCompleted: false,
+      };
+
+      state.tasks.push(taskData);
+    },
+  },
 });
+
+export const { addTask } = taskSlice.actions;
 
 export const selectTasks = (state: RootState) => {
   return state.todo.tasks;
