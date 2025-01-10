@@ -17,10 +17,6 @@ const Tasks = () => {
         <h1>Tasks</h1>
         <Tabs defaultValue="All" className="w-[400px] ml-auto">
           <TabsList className="grid w-full grid-cols-4">
-            {/* <TabsTrigger onClick={() => dispatch(updatedFilters("All"))} value="All">All</TabsTrigger>
-            <TabsTrigger onClick={() => dispatch(updatedFilters("Low"))} value="Low">Low</TabsTrigger>
-            <TabsTrigger onClick={() => dispatch(updatedFilters("Medium"))} value="Medium">Medium</TabsTrigger>
-            <TabsTrigger onClick={() => dispatch(updatedFilters("High"))} value="High">High</TabsTrigger> */}
             <TabsTrigger value="All">All</TabsTrigger>
             <TabsTrigger value="Low">Low</TabsTrigger>
             <TabsTrigger value="Medium">Medium</TabsTrigger>
@@ -30,9 +26,10 @@ const Tasks = () => {
         <AddTask />
       </div>
       <div className="flex flex-col gap-5 mt-5">
-        {!isLoading && data.tasks.map((task: ITask) => (
-          <TaskCard key={task._id} task={task} />
-        ))}
+        {!isLoading &&
+          data.tasks.map((task: ITask) => (
+            <TaskCard key={task.title} task={task} />
+          ))}
       </div>
     </div>
   );

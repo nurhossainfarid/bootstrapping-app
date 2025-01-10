@@ -1,12 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
-import { deleteTask, toggleTask } from "@/redux/features/tasks/taskSlice";
-import { selectUsers } from "@/redux/features/users/userSlice";
-import { useAppDispatch } from "@/redux/hooks/hooks";
 import { ITask } from "@/types/types";
 import { Trash2 } from "lucide-react";
-import { useSelector } from "react-redux";
 
 interface IProps {
   task: ITask;

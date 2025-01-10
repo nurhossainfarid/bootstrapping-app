@@ -31,6 +31,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { useAddTaskMutation } from "@/redux/api/baseApi";
 import { ITask } from "@/types/types";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
@@ -41,11 +42,18 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 export function AddTask() {
   const [open, setOpen] = useState(false);
   const form = useForm<ITask>();
-  // const dispatch = useAppDispatch();
-  // const users = useSelector(selectUsers);
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    // dispatch(addTask(data as ITask));
+  const [addTask, { data }] = useAddTaskMutation();
+  console.log(data);
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const taskData = {
+      ...data,
+      isCompleted: false,
+    };
+
+    await addTask(taskData);
+
     setOpen(false);
     form.reset();
   };
@@ -118,7 +126,7 @@ export function AddTask() {
             {/* assignTo */}
             <FormField
               control={form.control}
-              name="assignedTo"
+              name="member"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Assign To</FormLabel>
