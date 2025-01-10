@@ -8,6 +8,15 @@ export interface ITask {
 }
 
 export interface ITaskState {
-  tasks: ITask[]
-  filter: "All" | "High" | "Medium" | "Low"
+  tasks: ITask[];
+  filter: "All" | "High" | "Medium" | "Low";
+}
+
+export interface IUser {
+  id: string;
+  name: string;
+}
+
+export interface IUserState {
+  users: IUser[];
 }
