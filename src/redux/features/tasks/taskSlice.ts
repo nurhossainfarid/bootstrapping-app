@@ -2,6 +2,7 @@ import { RootState } from "@/redux/store";
 import { ITask, ITaskState } from "@/types/types";
 import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
+import { deleteUser } from "../users/userSlice";
 
 const initialState: ITaskState = {
   tasks: [
@@ -12,6 +13,7 @@ const initialState: ITaskState = {
       dueDate: "2025-11",
       isCompleted: false,
       priority: "High",
+      assignedTo: null,
     },
     {
       id: "iamnurhossainfarid2",
@@ -20,6 +22,7 @@ const initialState: ITaskState = {
       dueDate: "2025-11",
       isCompleted: false,
       priority: "Low",
+      assignedTo: null,
     },
   ],
   filter: "All",
@@ -63,6 +66,13 @@ const taskSlice = createSlice({
     ) => {
       state.filter = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(deleteUser, (state, action) => {
+      state.tasks.forEach((task) =>
+        task.assignedTo === action.payload ? (task.assignedTo = null) : task
+      );
+    });
   },
 });
 
