@@ -2,9 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
 import { deleteTask, toggleTask } from "@/redux/features/tasks/taskSlice";
+import { selectUsers } from "@/redux/features/users/userSlice";
 import { useAppDispatch } from "@/redux/hooks/hooks";
 import { ITask } from "@/types/types";
 import { Trash2 } from "lucide-react";
+import { useSelector } from "react-redux";
 
 interface IProps {
   task: ITask;
@@ -12,6 +14,9 @@ interface IProps {
 
 const TaskCard = ({ task }: IProps) => {
   const dispatch = useAppDispatch();
+  const users = useSelector(selectUsers);
+
+  const assignedUser = users.find((user) => user.id === task.assignedTo);
 
   return (
     <div className="border px-5 py-3 rounded-md">
@@ -52,6 +57,7 @@ const TaskCard = ({ task }: IProps) => {
           />
         </div>
       </div>
+      <p>Assigned To- {assignedUser ? assignedUser.name : "No one"}</p>
       <p className="mt-5">{task.description}</p>
     </div>
   );

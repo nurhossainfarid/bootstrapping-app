@@ -25,7 +25,10 @@ const initialState: ITaskState = {
   filter: "All",
 };
 
-type DraftTask = Pick<ITask, "title" | "description" | "dueDate" | "priority">;
+type DraftTask = Pick<
+  ITask,
+  "title" | "description" | "dueDate" | "priority" | "assignedTo"
+>;
 
 const createTask = (taskData: DraftTask): ITask => {
   return {
@@ -81,6 +84,7 @@ export const selectFilter = (state: RootState) => {
   return state.todo.filter;
 };
 
-export const { addTask, toggleTask, deleteTask, updatedFilters } = taskSlice.actions;
+export const { addTask, toggleTask, deleteTask, updatedFilters } =
+  taskSlice.actions;
 
 export default taskSlice.reducer;
