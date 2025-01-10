@@ -16,21 +16,26 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { addUser } from "@/redux/features/users/userSlice";
-import { useAppDispatch } from "@/redux/hooks/hooks";
+// import { addUser } from "@/redux/features/users/userSlice";
+// import { useAppDispatch } from "@/redux/hooks/hooks";
 import { IUser } from "@/types/types";
+import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 export function AddUser() {
+  const [open, setOpen] = useState(false);
   const form = useForm<IUser>();
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    dispatch(addUser(data as IUser));
+    // dispatch(addUser(data as IUser));
+    console.log(data);
+    setOpen(false);
+    form.reset();
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button>Add User</Button>
       </DialogTrigger>

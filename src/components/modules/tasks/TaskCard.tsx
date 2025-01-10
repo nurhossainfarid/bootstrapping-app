@@ -13,10 +13,10 @@ interface IProps {
 }
 
 const TaskCard = ({ task }: IProps) => {
-  const dispatch = useAppDispatch();
-  const users = useSelector(selectUsers);
+  // const dispatch = useAppDispatch();
+  // const users = useSelector(selectUsers);
 
-  const assignedUser = users.find((user) => user.id === task.assignedTo);
+  // const assignedUser = users.find((user) => user.id === task.assignedTo);
 
   return (
     <div className="border px-5 py-3 rounded-md">
@@ -45,7 +45,7 @@ const TaskCard = ({ task }: IProps) => {
         </div>
         <div className="flex gap-3 items-center">
           <Button
-            onClick={() => dispatch(deleteTask(task.id))}
+            // onClick={() => dispatch(deleteTask(task.id))}
             variant={"link"}
             className="p-0 text-red-500"
           >
@@ -53,11 +53,11 @@ const TaskCard = ({ task }: IProps) => {
           </Button>
           <Checkbox
             checked={task.isCompleted}
-            onClick={() => dispatch(toggleTask(task.id))}
+            // onClick={() => dispatch(toggleTask(task.id))}
           />
         </div>
       </div>
-      <p>Assigned To- {assignedUser ? assignedUser.name : "No one"}</p>
+      {/* <p>Assigned To- {assignedUser ? assignedUser.name : "No one"}</p> */}
       <p className="mt-5">{task.description}</p>
     </div>
   );
