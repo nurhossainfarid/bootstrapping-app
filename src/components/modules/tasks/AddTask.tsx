@@ -36,14 +36,14 @@ import { useAppDispatch } from "@/redux/hooks/hooks";
 import { ITask } from "@/types/types";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 export function AddTask() {
   const form = useForm<ITask>();
   const dispatch = useAppDispatch();
 
-  const onSubmit = (data: ITask) => {
-    dispatch(addTask(data));
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    dispatch(addTask(data as ITask));
   };
 
   return (
